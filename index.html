@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Trámites — Finca 520242</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap');
+
+  :root {
+    --verde: #1a6b3c;
+    --verde-claro: #2d9b5a;
+    --verde-suave: #e8f5ee;
+    --amarillo: #f5a623;
+    --rojo: #c0392b;
+    --gris: #f4f4f2;
+    --texto: #1a1a1a;
+    --texto-suave: #555;
+    --borde: #d4e8db;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f0f4f0;
+    color: var(--texto);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .header {
+    background: var(--verde);
+    color: white;
+    padding: 32px 24px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; left: 40%;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+
+  .header p {
+    font-size: 12px;
+    opacity: 0.75;
+    font-weight: 300;
+  }
+
+  .finca-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 16px 40px;
+  }
+
+  .section {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+
+  .section-header {
+    background: var(--verde-suave);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--borde);
+  }
+
+  .section-header .icon {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .section-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--verde);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .section-body {
+    padding: 16px;
+  }
+
+  /* DATOS DE FINCA */
+  .datos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .dato-item {
+    background: var(--gris);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+
+  .dato-item .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--texto-suave);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .dato-item .value {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--texto);
+  }
+
+  .dato-item.full {
+    grid-column: 1 / -1;
+  }
+
+  /* CONTACTOS */
+  .contacto {
+    border-left: 3px solid var(--verde-claro);
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    background: var(--gris);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .contacto:last-child { margin-bottom: 0; }
+
+  .contacto .nombre {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--verde);
+    margin-bottom: 2px;
+  }
+
+  .contacto .descripcion {
+    font-size: 12px;
+    color: var(--texto-suave);
+    margin-bottom: 6px;
+  }
+
+  .contacto .telefono {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--verde);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .contacto .telefono:hover {
+    background: var(--verde-claro);
+  }
+
+  .contacto .web {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    color: var(--verde);
+    border: 1px solid var(--verde);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 6px;
+  }
+
+  .contacto .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 8px;
+  }
+
+  .tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .tag.urgente { background: #fdecea; color: var(--rojo); }
+  .tag.gratuito { background: #e8f5ee; color: var(--verde); }
+  .tag.prioritario { background: #fff8e1; color: #e67e22; }
+
+  /* RUTA DE TRAMITES */
+  .paso {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+
+  .paso:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 17px;
+    top: 36px;
+    bottom: -14px;
+    width: 2px;
+    background: var(--borde);
+  }
+
+  .paso-num {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    background: var(--verde);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    position: relative;
+    z-index: 1;
+  }
+
+  .paso-contenido {
+    flex: 1;
+    padding-top: 4px;
+  }
+
+  .paso-contenido strong {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--verde);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .paso-contenido p {
+    font-size: 12px;
+    color: var(--texto-suave);
+  }
+
+  /* REQUISITOS */
+  .requisito-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .requisito-item:last-child { border-bottom: none; }
+
+  .req-check {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid var(--borde);
+    border-radius: 4px;
+    margin-top: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+
+  .req-check:hover {
+    border-color: var(--verde-claro);
+    background: var(--verde-suave);
+  }
+
+  .req-check.checked {
+    background: var(--verde);
+    border-color: var(--verde);
+    color: white;
+  }
+
+  .req-texto {
+    flex: 1;
+  }
+
+  .req-texto strong {
+    font-size: 13px;
+    font-weight: 500;
+    display: block;
+  }
+
+  .req-texto span {
+    font-size: 11px;
+    color: var(--texto-suave);
+  }
+
+  /* ADVERTENCIAS */
+  .alerta {
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+
+  .alerta:last-child { margin-bottom: 0; }
+
+  .alerta.roja { background: #fdecea; border-left: 3px solid var(--rojo); }
+  .alerta.amarilla { background: #fff8e1; border-left: 3px solid var(--amarillo); }
+  .alerta.verde { background: var(--verde-suave); border-left: 3px solid var(--verde-claro); }
+
+  .alerta .alerta-icon { font-size: 16px; line-height: 1.4; }
+  .alerta .alerta-texto { line-height: 1.5; }
+  .alerta .alerta-texto strong { display: block; font-size: 12px; margin-bottom: 2px; }
+
+  /* SCRIPT LLAMADAS */
+  .script-box {
+    background: #1a1a2e;
+    color: #a8d8b9;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .script-box .script-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #7ecfa0;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .script-box p { color: #e0ffe8; }
+
+  /* COSTOS */
+  .costo-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--borde);
+  }
+
+  .costo-row:last-child { border-bottom: none; }
+  .costo-row .costo-nombre { font-size: 13px; }
+  .costo-row .costo-valor { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: var(--verde); }
+  .costo-row.total { background: var(--verde-suave); padding: 10px; border-radius: 8px; margin-top: 4px; }
+  .costo-row.total .costo-nombre { font-weight: 600; }
+  .costo-row.total .costo-valor { color: var(--verde); font-size: 15px; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 11px;
+    color: var(--texto-suave);
+  }
+
+  @media print {
+    body { background: white; font-size: 12px; }
+    .container { padding: 10px; }
+    .header { padding: 20px; }
+    .section { box-shadow: none; border: 1px solid #ddd; }
+  }
+
+  @media (max-width: 500px) {
+    .datos-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Guía de Trámites de Vivienda</h1>
+  <p>Resumen completo · Finca en San Juan de Tibás</p>
+  <div class="finca-badge">📋 Finca 520242 · SJ-594784-1985</div>
+</div>
+
+<div class="container">
+
+  <!-- DATOS DE LA FINCA -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">🏡</span>
+      <h2>Datos de la Finca</h2>
+    </div>
+    <div class="section-body">
+      <div class="datos-grid">
+        <div class="dato-item">
+          <div class="label">Número de Finca</div>
+          <div class="value">520242</div>
+        </div>
+        <div class="dato-item">
+          <div class="label">Número de Plano</div>
+          <div class="value">SJ-594784-1985</div>
+        </div>
+        <div class="dato-item">
+          <div class="label">Área total</div>
+          <div class="value">338.72 m²</div>
+        </div>
+        <div class="dato-item">
+          <div class="label">Ubicación</div>
+          <div class="value">San Juan, Tibás</div>
+        </div>
+        <div class="dato-item">
+          <div class="label">Lindero Norte</div>
+          <div class="value">Río Virilla</div>
+        </div>
+        <div class="dato-item">
+          <div class="label">Estado del Plano</div>
+          <div class="value">Inscrito (1985)</div>
+        </div>
+        <div class="dato-item full">
+          <div class="label">Propietario actual</div>
+          <div class="value">Cornelio Encarnación Laguna Centeno · Cédula 155811902325</div>
+        </div>
+        <div class="dato-item full">
+          <div class="label">Gravámenes activos</div>
+          <div class="value">⚠️ Reserva Ley de Aguas · Reserva Ley Forestal (desde 2001)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERTAS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">⚠️</span>
+      <h2>Puntos Críticos a Resolver</h2>
+    </div>
+    <div class="section-body">
+      <div class="alerta roja">
+        <span class="alerta-icon">🔴</span>
+        <div class="alerta-texto">
+          <strong>Zona de protección del Río Virilla</strong>
+          10 metros desde la orilla no se puede construir. Está inscrito en el Registro Nacional como Reserva Ley Forestal desde 2001.
+        </div>
+      </div>
+      <div class="alerta amarilla">
+        <span class="alerta-icon">🟡</span>
+        <div class="alerta-texto">
+          <strong>Plano catastrado de 1985 desactualizado</strong>
+          No refleja el estado actual ni delimita los 10 metros. El BANHVI y la Municipalidad casi con certeza pedirán uno nuevo.
+        </div>
+      </div>
+      <div class="alerta amarilla">
+        <span class="alerta-icon">🟡</span>
+        <div class="alerta-texto">
+          <strong>Finca registrada con "tres casas de habitación"</strong>
+          Las casas demolidas siguen apareciendo en el Registro. Hay que actualizar la naturaleza de la finca.
+        </div>
+      </div>
+      <div class="alerta verde">
+        <span class="alerta-icon">🟢</span>
+        <div class="alerta-texto">
+          <strong>No hay declaratoria de inhabitable en el Registro Nacional</strong>
+          No aparece inscrita a nivel nacional. Verificar a nivel municipal en la Municipalidad de Tibás.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUTA DE TRAMITES -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">🗺️</span>
+      <h2>Ruta de Trámites Paso a Paso</h2>
+    </div>
+    <div class="section-body">
+      <div class="paso">
+        <div class="paso-num">1</div>
+        <div class="paso-contenido">
+          <strong>IMAS — Apoyo para gastos previos</strong>
+          <p>Solicitar certificación socioeconómica y apoyo para cubrir costos de topógrafo y gestor antes del bono.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-num">2</div>
+        <div class="paso-contenido">
+          <strong>Municipalidad de Tibás — Verificar inhabitable</strong>
+          <p>Confirmar si existe declaratoria de inhabitable a nivel municipal y qué requisitos piden para el permiso de construcción.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-num">3</div>
+        <div class="paso-contenido">
+          <strong>FUPROVI — Asesoría especializada</strong>
+          <p>Consultar si pueden apoyar el proceso completo incluyendo los gastos previos al bono.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-num">4</div>
+        <div class="paso-contenido">
+          <strong>Topógrafo — Plano actualizado</strong>
+          <p>Levantar nuevo plano catastrado que delimite claramente los 10 metros del río y el área construible.</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-num">5</div>
+        <div class="paso-contenido">
+          <strong>Mutual o Cooperativa BANHVI — Bono de construcción</strong>
+          <p>Presentar el caso como "demolición + construcción nueva en lote propio fuera de zona de protección".</p>
+        </div>
+      </div>
+      <div class="paso">
+        <div class="paso-num">6</div>
+        <div class="paso-contenido">
+          <strong>SINAC — Permiso muro de contención</strong>
+          <p>Solicitar autorización para obra de protección dentro de la zona de 10 metros (gaviones o enrocado tienen más probabilidad de aprobación).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACTOS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">📞</span>
+      <h2>Contactos Clave</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="contacto">
+        <div class="nombre">IMAS — Instituto Mixto de Ayuda Social</div>
+        <div class="descripcion">Certificación socioeconómica · Apoyo para gastos previos al bono · Programas de vivienda</div>
+        <a class="telefono" href="tel:8004627000">📞 800-4627-000</a>
+        <div class="tags">
+          <span class="tag gratuito">✓ Gratuito</span>
+          <span class="tag prioritario">★ Primer contacto</span>
+        </div>
+      </div>
+
+      <div class="contacto">
+        <div class="nombre">FUPROVI — Fundación Promotora de Vivienda</div>
+        <div class="descripcion">Ayuda a familias de bajos recursos con trámites BANHVI · Pueden absorber costos previos</div>
+        <a class="telefono" href="tel:22534911">📞 2253-4911</a>
+        <a class="web" href="https://fuprovi.org" target="_blank">🌐 fuprovi.org</a>
+        <div class="tags">
+          <span class="tag gratuito">✓ Gratuito</span>
+          <span class="tag prioritario">★ Casos complejos</span>
+        </div>
+      </div>
+
+      <div class="contacto">
+        <div class="nombre">BANHVI — Banco Hipotecario de la Vivienda</div>
+        <div class="descripcion">Bono de construcción en lote propio · No es préstamo, es donación del Estado</div>
+        <a class="telefono" href="tel:22028600">📞 2202-8600</a>
+        <div class="tags">
+          <span class="tag gratuito">✓ Bono no reembolsable</span>
+        </div>
+      </div>
+
+      <div class="contacto">
+        <div class="nombre">Municipalidad de Tibás</div>
+        <div class="descripcion">Verificar declaratoria de inhabitable · Permisos de construcción y demolición · Uso de suelo</div>
+        <a class="telefono" href="tel:22402327">📞 2240-2327</a>
+        <div class="tags">
+          <span class="tag urgente">⚠ Verificar inhabitable</span>
+        </div>
+      </div>
+
+      <div class="contacto">
+        <div class="nombre">CNE — Comisión Nacional de Emergencias</div>
+        <div class="descripcion">Si la erosión del río representa riesgo inminente · Pueden ejecutar obras de protección ellos mismos</div>
+        <a class="telefono" href="tel:22102828">📞 2210-2828</a>
+        <a class="telefono" href="tel:911" style="margin-left:6px; background:#c0392b">🚨 911</a>
+        <div class="tags">
+          <span class="tag urgente">⚠ Solo si hay riesgo inmediato</span>
+          <span class="tag gratuito">✓ Gratuito</span>
+        </div>
+      </div>
+
+      <div class="contacto">
+        <div class="nombre">SINAC / MINAE</div>
+        <div class="descripcion">Permiso para muro de contención dentro de los 10 metros · Gestión zona de protección fluvial</div>
+        <a class="web" href="https://www.sinac.go.cr" target="_blank" style="margin-left:0">🌐 sinac.go.cr</a>
+        <div class="tags">
+          <span class="tag prioritario">★ Para el muro de contención</span>
+        </div>
+      </div>
+
+      <div class="contacto">
+        <div class="nombre">SENARA — Servicio Nacional de Aguas</div>
+        <div class="descripcion">Gestión de ríos y cuencas · Pueden intervenir si el río causa erosión activa</div>
+        <a class="telefono" href="tel:24553500">📞 2455-3500</a>
+        <div class="tags">
+          <span class="tag gratuito">✓ Gratuito</span>
+        </div>
+      </div>
+
+      <div class="contacto">
+        <div class="nombre">OIJ — Delitos Informáticos</div>
+        <div class="descripcion">Para denunciar fraude de identidad o uso indebido de datos personales</div>
+        <a class="telefono" href="tel:22953643">📞 2295-3643</a>
+        <div class="tags">
+          <span class="tag urgente">⚠ Solo si hay fraude</span>
+        </div>
+      </div>
+
+      <div class="contacto">
+        <div class="nombre">Colegio de Ingenieros Topógrafos de CR</div>
+        <div class="descripcion">Referencia a topógrafos con tarifas accesibles para casos de bono de vivienda</div>
+        <a class="telefono" href="tel:22025494">📞 2202-5494</a>
+        <div class="tags">
+          <span class="tag gratuito">✓ Orientación gratuita</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- REQUISITOS CON CHECKLIST -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">✅</span>
+      <h2>Documentos Necesarios</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="requisito-item">
+        <div class="req-check" onclick="toggleCheck(this)"></div>
+        <div class="req-texto">
+          <strong>Plano catastrado actualizado</strong>
+          <span>Número actual: SJ-594784-1985 (de 1985, necesita actualizarse)</span>
+        </div>
+      </div>
+      <div class="requisito-item">
+        <div class="req-check" onclick="toggleCheck(this)"></div>
+        <div class="req-texto">
+          <strong>Certificación de condición socioeconómica del IMAS</strong>
+          <span>Acelera el trámite y aumenta posibilidades de aprobación</span>
+        </div>
+      </div>
+      <div class="requisito-item">
+        <div class="req-check" onclick="toggleCheck(this)"></div>
+        <div class="req-texto">
+          <strong>Estudio registral de la finca (Folio Real)</strong>
+          <span>Finca 520242 · Ya tenés el documento impreso</span>
+        </div>
+      </div>
+      <div class="requisito-item">
+        <div class="req-check" onclick="toggleCheck(this)"></div>
+        <div class="req-texto">
+          <strong>Fotografías del estado actual del terreno y del río</strong>
+          <span>Documentar la erosión para trámites en SINAC y CNE</span>
+        </div>
+      </div>
+      <div class="requisito-item">
+        <div class="req-check" onclick="toggleCheck(this)"></div>
+        <div class="req-texto">
+          <strong>Planos de construcción firmados por ingeniero CFIA</strong>
+          <span>Deben incluir muro de contención + casa nueva</span>
+        </div>
+      </div>
+      <div class="requisito-item">
+        <div class="req-check" onclick="toggleCheck(this)"></div>
+        <div class="req-texto">
+          <strong>Memoria de cálculo del muro</strong>
+          <span>Requerida por el SINAC para aprobar obra en zona de protección</span>
+        </div>
+      </div>
+      <div class="requisito-item">
+        <div class="req-check" onclick="toggleCheck(this)"></div>
+        <div class="req-texto">
+          <strong>Permiso de demolición municipal</strong>
+          <span>Para demoler la casa actual antes de construir la nueva</span>
+        </div>
+      </div>
+      <div class="requisito-item">
+        <div class="req-check" onclick="toggleCheck(this)"></div>
+        <div class="req-texto">
+          <strong>Verificar declaratoria de inhabitable en Municipalidad de Tibás</strong>
+          <span>No aparece en Registro Nacional pero puede estar a nivel municipal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS DE LLAMADA -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">🗣️</span>
+      <h2>Qué Decir al Llamar</h2>
+    </div>
+    <div class="section-body">
+      <div class="script-box">
+        <span class="script-label">📞 Para el IMAS — 800-4627-000</span>
+        <p>"Buenos días, tengo un terreno en San Juan de Tibás, finca 520242, y quiero tramitar un bono de vivienda pero no tengo recursos para cubrir los gastos previos como el topógrafo. Quisiera saber si el IMAS tiene algún programa que me ayude a cubrir esos gastos. El terreno linda con el Río Virilla y tiene la afectación de los 10 metros de la Ley Forestal."</p>
+      </div>
+      <div class="script-box">
+        <span class="script-label">📞 Para FUPROVI — 2253-4911</span>
+        <p>"Buenos días, tengo un terreno propio en San Juan de Tibás y quiero construir una casa mediante el bono del BANHVI, pero no tengo recursos para los gastos previos. El terreno tiene una situación especial porque linda con el Río Virilla y tiene zona de protección. ¿Puede FUPROVI orientarme o apoyarme en este proceso?"</p>
+      </div>
+      <div class="script-box">
+        <span class="script-label">📞 Para Municipalidad de Tibás — 2240-2327</span>
+        <p>"Buenos días, tengo la finca 520242 en San Juan de Tibás y quiero tramitar un bono de vivienda para construir. ¿Existe alguna declaratoria de inhabitable sobre ese terreno? ¿Necesito plano nuevo o el de 1985 es suficiente para el permiso?"</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- COSTOS ESTIMADOS -->
+  <div class="section">
+    <div class="section-header">
+      <span class="icon">💰</span>
+      <h2>Costos Estimados de Trámites Previos</h2>
+    </div>
+    <div class="section-body">
+      <div class="costo-row">
+        <span class="costo-nombre">Topógrafo + plano nuevo</span>
+        <span class="costo-valor">₡150,000 – ₡250,000</span>
+      </div>
+      <div class="costo-row">
+        <span class="costo-nombre">Gestor / abogado registral</span>
+        <span class="costo-valor">₡80,000 – ₡150,000</span>
+      </div>
+      <div class="costo-row">
+        <span class="costo-nombre">Permisos municipales</span>
+        <span class="costo-valor">₡20,000 – ₡50,000</span>
+      </div>
+      <div class="costo-row total">
+        <span class="costo-nombre">💡 Total aproximado (sin apoyo institucional)</span>
+        <span class="costo-valor">₡250,000 – ₡450,000</span>
+      </div>
+      <div class="alerta verde" style="margin-top:12px; margin-bottom:0">
+        <span class="alerta-icon">💡</span>
+        <div class="alerta-texto">
+          <strong>IMAS y FUPROVI pueden cubrir estos costos</strong>
+          Contactarlos primero antes de gastar cualquier dinero de tu bolsillo.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Generado el 28 de marzo de 2026 · Finca 520242, San Juan de Tibás · Esta guía es orientativa, no reemplaza asesoría legal profesional.
+</div>
+
+<script>
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+    el.textContent = el.classList.contains('checked') ? '✓' : '';
+  }
+</script>
+
+</body>
+</html>
